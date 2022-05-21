@@ -37,10 +37,10 @@ state_hex <- state.bounds %>% select(state, geometry) %>%
   arrange(state) %>%
   ungroup()
 
-cd_hex_label <- labs %>% select(state, geometry) %>% st_centroid() %>%
+state_hex_label <- labs %>% select(state, geometry) %>% st_centroid() %>%
   arrange(state) %>% ungroup()
 
 st_write(cd_hex, "cd_hex.geojson", delete_dsn = T)
 st_write(state_hex, "state_hex.geojson", delete_dsn = T)
-st_write(cd_hex_label, "state_hex_label.geojson", delete_dsn = T)
-
+st_write(state_hex_label, "state_hex_label.geojson", delete_dsn = T)
+save(cd_hex, state_hex, state_hex_label, file="hex_map_cds.Rdata")
